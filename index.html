@@ -28,10 +28,11 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>A pynt of Python build. <a href="https://travis-ci.org/rags/pynt"><img src="https://travis-ci.org/rags/pynt.png?branch=master" alt="Build Status"></a>
-</h1>
+          <p><a href="https://travis-ci.org/rags/pynt"><img src="https://travis-ci.org/rags/pynt.png?branch=master" alt="Build Status"></a></p>
 
-<p><a href="https://github.com/rags"><strong>Raghunandan Rao</strong></a></p>
+<h1>A pynt of Python build. </h1>
+
+<p><a href="https://github.com/rags">Raghunandan Rao</a></p>
 
 <h2>Features</h2>
 
@@ -61,8 +62,11 @@
 <p>The build script is written in pure Python and pynt takes care of managing
 any dependancies between tasks and generating a command line interface.</p>
 
-<p>Writing build tasks is really simple, all you need to know is the <a href="https://github.com/task" class="user-mention">@task</a> decorator. Tasks are just regular Python functions marked with the <code>@task()</code> decorator. Dependancies
-are specified with <code>@task()</code> too. Tasks can be ignored with the <code>task(ignore=True)</code>.</p>
+<p>Writing build tasks is really simple, all you need to know is the <a href="https://github.com/task" class="user-mention">@task</a> decorator. Tasks are just regular Python 
+functions marked with the <code>@task()</code> decorator. Dependancies are specified with <code>@task()</code> too. Tasks can be 
+ignored with the <code>@task(ignore=True)</code>. Disabling a task is an useful feature to have in situations where you have one
+task that a lot of other tasks depend on and you want to quickly remove it from the dependency chains of all the 
+dependent tasks. </p>
 
 <h2><strong>build.py</strong></h2>
 
@@ -116,13 +120,13 @@ are extracted from function docstrings.</p>
 usage: b <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> <span class="o">[</span>-f file<span class="o">]</span> <span class="o">[</span>task <span class="o">[</span>task ...<span class="o">]]</span>
 
 positional arguments:
-  task                  perform specified task and all it<span class="s1">'s dependancies</span>
+  task                  perform specified task and all its dependancies
 
-<span class="s1">optional arguments:</span>
-<span class="s1">  -h, --help            show this help message and exit</span>
-<span class="s1">  -l, --list-tasks      List the tasks</span>
-<span class="s1">  -f file, --file file  Build file to read the tasks from. Default is</span>
-<span class="s1">                        '</span>build.py<span class="err">'</span>
+optional arguments:
+  -h, --help            show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  -l, --list-tasks      List the tasks
+  -f file, --file file  Build file to <span class="nb">read </span>the tasks from. Default is
+                        <span class="s1">'build.py'</span>
 
 Tasks in build file ./build.py:
   clean                       Clean build directory.

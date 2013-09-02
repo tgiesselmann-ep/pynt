@@ -115,6 +115,12 @@ dependent tasks. </p>
     <span class="k">print</span> <span class="n">args</span>
     <span class="k">print</span> <span class="n">kwargs</span>
 
+<span class="c"># Default task (if specified) is run when no task is specified in the command line</span>
+<span class="c"># make sure you define the variable __DEFAULT__ after the task is defined</span>
+<span class="c"># A good convention is to define it at the end of the module</span>
+<span class="c"># __DEFAULT__ is an optional member</span>
+
+<span class="n">__DEFAULT__</span><span class="o">=</span><span class="n">start_server</span>
 </pre></div>
 
 <h2>
@@ -124,8 +130,8 @@ dependent tasks. </p>
 <p>The command line interface and help is automatically generated. Task descriptions
 are extracted from function docstrings.</p>
 
-<div class="highlight"><pre><span class="nv">$ </span>pynt
-usage: b <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> <span class="o">[</span>-f file<span class="o">]</span> <span class="o">[</span>task <span class="o">[</span>task ...<span class="o">]]</span>
+<div class="highlight"><pre><span class="nv">$ </span>pynt -h
+usage: b <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span> <span class="o">[</span>-f file<span class="o">]</span> <span class="o">[</span>task <span class="o">[</span>task ...<span class="o">]]</span>
 
 positional arguments:
   task                  perform specified task and all its dependencies
@@ -133,16 +139,19 @@ positional arguments:
 optional arguments:
   -h, --help            show this <span class="nb">help </span>message and <span class="nb">exit</span>
   -l, --list-tasks      List the tasks
+  -v, --version         Display the version information
   -f file, --file file  Build file to <span class="nb">read </span>the tasks from. Default is
                         <span class="s1">'build.py'</span>
+</pre></div>
 
+<div class="highlight"><pre><span class="nv">$ </span>pynt -l
 Tasks in build file ./build.py:
   clean                       Clean build directory.
   copy_file                   
   <span class="nb">echo                        </span>
 <span class="nb">  </span>html                        Generate HTML.
   images           <span class="o">[</span>Ignored<span class="o">]</span>  Prepare images.
-  start_server                Start the server
+  start_server     <span class="o">[</span>Default<span class="o">]</span>  Start the server
   stop_server                 
 
 Powered by pynt - A Lightweight Python Build Tool.
@@ -150,7 +159,7 @@ Powered by pynt - A Lightweight Python Build Tool.
 
 <p>pynt takes care of dependencies between tasks. In the following case start_server depends on clean, html and image generation (image task is ignored).</p>
 
-<div class="highlight"><pre><span class="nv">$ </span>pynt start_server
+<div class="highlight"><pre><span class="nv">$ </span>pynt <span class="c">#Runs the default task start_server. It does exactly what "pynt start_server" would do.</span>
 <span class="o">[</span> example.py - Starting task <span class="s2">"clean"</span> <span class="o">]</span>
 Cleaning build directory...
 <span class="o">[</span> example.py - Completed task <span class="s2">"clean"</span> <span class="o">]</span>
